@@ -37,13 +37,14 @@ class Userpost(models.Model):
             url = ''
         return url
 
+
 class Dealer(models.Model):
     dealersName = models.TextField(('DealersName'))
     zipcode = models.CharField(("zipcodex"), max_length = 15)
     zipcode_2 = models.CharField(("zipCode"), max_length = 15)	
     state = models.CharField(("state"), max_length=5)
     address = models.TextField(("Address"))
-    dealerId = models.BigIntegerField(("ids"), primary_key=True)
+    dealerId = models.IntegerField(("ids"), primary_key=True)
     
 
     def __str__(self):
@@ -51,17 +52,16 @@ class Dealer(models.Model):
 
 class DealershipListing(models.Model):
     carID = models.IntegerField(("CarID"), primary_key=True)
-    vincode = models.CharField(('vinCode'), max_length=255)
-    price = models.CharField(('price'), max_length=30)
-    msrp = models.CharField(('msrp'), max_length=30)
-    mileage = models.CharField(('mileage'), max_length=9)
-    is_new = models.CharField(('isNew'), max_length=5)
-    first_seen = models.CharField(("first_seen"), max_length=15)
-    last_seen = models.CharField(("last_seen"), max_length=15)
+    price = models.IntegerField(('price'))
+    msrp = models.IntegerField(('msrp'))
+    mileage = models.IntegerField(('mileage'))
+    is_new = models.BooleanField(('isNew'))
     model = models.CharField(("Models"), max_length= 255)
     make = models.CharField(("Make"), max_length=255)
     year = models.IntegerField(("Year"))
     dealerID = models.ForeignKey(Dealer, models.CASCADE)
 
     def __str__(self):
-        return self.vincode
+        return self.year + " " + self.make + " " + self.model
+
+
