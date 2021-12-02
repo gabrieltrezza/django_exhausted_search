@@ -50,6 +50,7 @@ class Dealer(models.Model):
     def __str__(self):
         return self.dealersName
 
+
 class DealershipListing(models.Model):
     carID = models.IntegerField(("CarID"), primary_key=True)
     price = models.IntegerField(('price'))
@@ -58,10 +59,8 @@ class DealershipListing(models.Model):
     is_new = models.BooleanField(('isNew'))
     model = models.CharField(("Models"), max_length= 255)
     make = models.CharField(("Make"), max_length=255)
-    year = models.IntegerField(("Year"))
+    year = models.CharField(("Year"),max_length=4)
     dealerID = models.ForeignKey(Dealer, models.CASCADE)
 
     def __str__(self):
         return self.year + " " + self.make + " " + self.model
-
-
