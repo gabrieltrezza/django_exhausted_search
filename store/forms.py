@@ -24,7 +24,7 @@ class post_user(ModelForm):
             'Model':forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Car Model'}),
             'Price':forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Car Price'}),
             'email':forms.EmailInput(attrs={'class': 'form-control', 'placeholder':"Seller's Email"}),
-            'zipCode':forms.EmailInput(attrs={'class': 'form-control', 'placeholder':'Seller"s ZipCode'}),
+            'zipCode':forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Seller"s ZipCode'}),
             'image':forms.FileInput(attrs={'class': 'form-control-file'}),
 
         }

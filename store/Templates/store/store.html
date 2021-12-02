@@ -3,11 +3,14 @@
 
 {% block content %}
 <ul>
-{% for dealer in dealer_list %}
-    <li>{{ dealer }}</li>
-    <li>{{dealer.ids}}</li>
-{% endfor %}
+    {% for car in cars_list %}
+    <ul>
+    {{car.dealerID}}
+    </ul>
+    {% endfor %}
 </ul>
+
+
 <!--<div class="row">
     <div class="col-lg-4">
         <img class="thumbnail" src="{% static 'images/placeholder.png' %}">

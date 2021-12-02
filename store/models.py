@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.deletion import CASCADE
+from django.db.models.fields.related import ForeignKey
 from django.utils import timezone
 
 class Customer(models.Model):
@@ -19,8 +21,9 @@ class Userpost(models.Model):
     Price = models.DecimalField(max_digits=15, decimal_places=2)
     email = models.EmailField()
     date_published = models.DateField(default = timezone.now)
-    image = models.ImageField(null = True, blank = True, upload_to = r"C:\Users\gabri\Desktop\test\ecommerce\static\images")
     zipCode = models.CharField(max_length=5)
+    image = models.ImageField(null = True, blank = True, upload_to = r"C:\Users\gabri\Desktop\test\ecommerce\static\images")
+    
     
 
     def __str__(self):
@@ -40,8 +43,25 @@ class Dealer(models.Model):
     zipcode_2 = models.CharField(("zipCode"), max_length = 15)	
     state = models.CharField(("state"), max_length=5)
     address = models.TextField(("Address"))
-    ids = models.BigIntegerField(("ids"), primary_key=True)
+    dealerId = models.BigIntegerField(("ids"), primary_key=True)
     
 
     def __str__(self):
         return self.dealersName
+
+class DealershipListing(models.Model):
+    carID = models.IntegerField(("CarID"), primary_key=True)
+    vincode = models.CharField(('vinCode'), max_length=255)
+    price = models.CharField(('price'), max_length=30)
+    msrp = models.CharField(('msrp'), max_length=30)
+    mileage = models.CharField(('mileage'), max_length=9)
+    is_new = models.CharField(('isNew'), max_length=5)
+    first_seen = models.CharField(("first_seen"), max_length=15)
+    last_seen = models.CharField(("last_seen"), max_length=15)
+    model = models.CharField(("Models"), max_length= 255)
+    make = models.CharField(("Make"), max_length=255)
+    year = models.IntegerField(("Year"))
+    dealerID = models.ForeignKey(Dealer, models.CASCADE)
+
+    def __str__(self):
+        return self.vincode
